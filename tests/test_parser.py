@@ -5,8 +5,10 @@ unit test suite
 """
 
 import edl
-import unittest
+import unittest, os
+from pathlib import Path
 
+THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class ParserTestCase(unittest.TestCase):
     """tests the Parser
@@ -14,7 +16,8 @@ class ParserTestCase(unittest.TestCase):
 
     def test_24fps(self):
         p = edl.Parser('24')
-        with open('../tests/test_data/test_24.edl') as f:
+        path = os.path.join(THIS_DIR, 'test_data/test_24.edl')
+        with open(path) as f:
             s = p.parse(f)
 
         self.assertEqual(s.events[0].clip_name, 'clip 1',
@@ -48,15 +51,18 @@ class ParserTestCase(unittest.TestCase):
 
     def test_pal(self):
         p = edl.Parser('25')
-        with open('../tests/test_data/test_25.edl') as f:
+        path = os.path.join(THIS_DIR, 'test_data/test_25.edl')
+        with open(path) as f:
             s = p.parse(f)
 
     def test_ntsc(self):
         p = edl.Parser('29.97')
-        with open('../tests/test_data/test_2997NDF.edl') as f:
+        path = os.path.join(THIS_DIR, 'test_data/test_2997NDF.edl')
+        with open(path) as f:
             s = p.parse(f)
 
     def test_2398fps(self):
         p = edl.Parser('23.98')
-        with open('../tests/test_data/test_2398.edl') as f:
+        path = os.path.join(THIS_DIR, 'test_data/test_2398.edl')
+        with open(path) as f:
             s = p.parse(f)

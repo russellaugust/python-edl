@@ -2,7 +2,10 @@
 
 import unittest
 import edl
+import os
+from pathlib import Path
 
+THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class ListTestCase(unittest.TestCase):
     """tests the edl.edl.List class
@@ -23,10 +26,12 @@ class ListTestCase(unittest.TestCase):
         """testing if to_string will output the EDL as string
         """
         p = edl.Parser('24')
-        with open('../tests/test_data/test_24.edl') as f:
+        path = os.path.join(THIS_DIR, 'test_data/test_24.edl')
+        with open(path) as f:
             s = p.parse(f)
 
-        with open('../tests/test_data/test_24.edl') as f:
+        path = os.path.join(THIS_DIR, 'test_data/test_24.edl')
+        with open(path) as f:
             expected_edl = f.readlines()
 
         self.maxDiff = None
@@ -40,13 +45,15 @@ class ListTestCase(unittest.TestCase):
         """testing if to_string will output the EDL as string
         """
         p = edl.Parser('24')
-        with open('../tests/test_data/test.edl') as f:
+        path = os.path.join(THIS_DIR, 'test_data/test.edl')
+        with open(path) as f:
             s = p.parse(f)
 
-        with open('../tests/test_data/test.edl') as f:
+        path = os.path.join(THIS_DIR, 'test_data/test.edl')
+        with open(path) as f:
             expected_edl = f.readlines()
 
-        print s.to_string()
+        print(s.to_string())
 
         self.assertEqual(
             ''.join(expected_edl),
@@ -57,13 +64,15 @@ class ListTestCase(unittest.TestCase):
         """testing if to_string will output the EDL as string
         """
         p = edl.Parser('24')
-        with open('../tests/test_data/test_50.edl') as f:
+        path = os.path.join(THIS_DIR, 'test_data/test_50.edl')
+        with open(path) as f:
             s = p.parse(f)
 
-        with open('../tests/test_data/test_50.edl') as f:
+        path = os.path.join(THIS_DIR, 'test_data/test_50.edl')
+        with open(path) as f:
             expected_edl = f.readlines()
 
-        print s.to_string()
+        print(s.to_string())
 
         self.assertEqual(
             ''.join(expected_edl),
