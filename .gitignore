@@ -12,3 +12,4 @@ docs/source/generated/*
 dist/*
 build/*
 MANIFEST
+venv/
